@@ -175,3 +175,32 @@
 
 
 
+CREATE TABLE clientes(
+	id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	nome VARCHAR(255) NOT NULL,
+	cpf VARCHAR(255),
+	telefone VARCHAR(10),
+	ativo BOOLEAN NOT NULL DEFAULT(TRUE)
+	);
+
+	CREATE TABLE produtos(
+     id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+     nome VARCHAR(255) NOT NULL,
+     quantidade INT NOT NULL,
+     preco DECIMAL (9,2) NOT NULL,
+     ativo BOOLEAN NOT NULL DEFAULT(TRUE)
+     );
+
+CREATE TABLE pedidos(
+	id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	id_cliente INT NOT NULL,
+	id_produtos INT NOT NULL,
+	quantidade INT NOT NULL,
+	total DECIMAL (9,2) NOT NULL,
+	FOREIGN KEY (id_cliente) REFERENCES clientes(id),
+	FOREIGN KEY (id_produtos) REFERENCES produtos(id)
+);
+
+INSERT INTO clientes(id, nome, cpf, telefone) VALUES(1, "guilherme",99999999,469997070);
+INSERT INTO pedidos(id,id_cliente, id_produtos, quantidade,total) VALUES(1, "1","1",1,20);
+INSERT INTO produtos(id,nome,quantidade,preco) VALUES(1, "cafe",2,40);
