@@ -202,5 +202,7 @@ CREATE TABLE pedidos(
 );
 
 INSERT INTO clientes(id, nome, cpf, telefone) VALUES(1, "guilherme",99999999,469997070);
+
 INSERT INTO pedidos(id,id_cliente, id_produtos, quantidade,total) VALUES(1, "1","1",1,20);
+
 INSERT INTO produtos(id,nome,quantidade,preco) VALUES(1, "cafe",2,40);
