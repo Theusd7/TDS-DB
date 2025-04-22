@@ -182,6 +182,7 @@ CREATE TABLE clientes(
 	telefone VARCHAR(10),
 	ativo BOOLEAN NOT NULL DEFAULT(TRUE)
 	);
+INSERT INTO clientes(id, nome, cpf, telefone) VALUES(1, "guilherme",99999999,469997070);
 
 	CREATE TABLE produtos(
      id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
@@ -190,6 +191,7 @@ CREATE TABLE clientes(
      preco DECIMAL (9,2) NOT NULL,
      ativo BOOLEAN NOT NULL DEFAULT(TRUE)
      );
+INSERT INTO pedidos(id,id_cliente, id_produtos, quantidade,total) VALUES(1, "1","1",1,20);
 
 CREATE TABLE pedidos(
 	id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
@@ -200,9 +202,4 @@ CREATE TABLE pedidos(
 	FOREIGN KEY (id_cliente) REFERENCES clientes(id),
 	FOREIGN KEY (id_produtos) REFERENCES produtos(id)
 );
-
-INSERT INTO clientes(id, nome, cpf, telefone) VALUES(1, "guilherme",99999999,469997070);
-
-INSERT INTO pedidos(id,id_cliente, id_produtos, quantidade,total) VALUES(1, "1","1",1,20);
-
 INSERT INTO produtos(id,nome,quantidade,preco) VALUES(1, "cafe",2,40);
