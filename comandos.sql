@@ -191,15 +191,32 @@ INSERT INTO clientes(id, nome, cpf, telefone) VALUES(1, "guilherme",99999999,469
      preco DECIMAL (9,2) NOT NULL,
      ativo BOOLEAN NOT NULL DEFAULT(TRUE)
      );
-INSERT INTO pedidos(id,id_cliente, id_produtos, quantidade,total) VALUES(1, "1","1",1,20);
+
 
 CREATE TABLE pedidos(
 	id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
 	id_cliente INT NOT NULL,
+	FOREIGN KEY (id_cliente) REFERENCES clientes(id)
+);
+
+INSERT INTO produtos(id,nome,quantidade,preco) VALUES(1, "cafe",2,40);
+INSERT INTO pedidos(id,id_cliente, id_produtos, quantidade,total) VALUES(1, "1","1",1,20);
+
+
+CREATE TABLE pedidos_items(
+	id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	id_pedido INT NOT NULL,
 	id_produtos INT NOT NULL,
 	quantidade INT NOT NULL,
-	total DECIMAL (9,2) NOT NULL,
-	FOREIGN KEY (id_cliente) REFERENCES clientes(id),
+	total DECIMAL(9,2) NOT NULL,
+	FOREIGN KEY (id_pedido) REFERENCES pedidos(id),
 	FOREIGN KEY (id_produtos) REFERENCES produtos(id)
 );
-INSERT INTO produtos(id,nome,quantidade,preco) VALUES(1, "cafe",2,40);
+
+INSERT INTO pedidos_items(id_pedido,id_produtos,quantidade,total) VALUES(1,2,1,40);
+INSERT INTO pedidos(id_cliente) VALUES(2),(3),(4),(5),(6),(7);
+INSERT INTO produtos(id,nome,quantidade,preco) VALUES(2, "lapis",5,3);
+INSERT INTO produtos(id,nome,quantidade,preco) VALUES(4, "caderno",5,25);
+INSERT INTO clientes(id, nome, cpf, telefone) VALUES(3,"marcelo",99999999,469997070);
+INSERT INTO clientes(id, nome, cpf, telefone) VALUES(4,"claudia",99999999,469997070);
+INSERT INTO clientes(id, nome, cpf, telefone) VALUES(2,"marcia",99999999,469997070);
