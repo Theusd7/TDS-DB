@@ -101,3 +101,22 @@ VALUES
 (1, 2, 1,  149.90),
 (1,3, 1, 899.00);
 
+SELECT
+    P.*, 
+    c.nome, 
+    c.telefone 
+FROM pedidos as p 
+    join clientes as c ON c.id = p.id_cliente 
+WHERE 
+    c.telefone is not null;
+
+SELECT
+    P.*, 
+    c.nome, 
+    c.telefone,
+    pi.* 
+FROM pedidos as p 
+    join clientes as c ON c.id = p.id_cliente
+    join pedidos_itens as pi ON pi.id_pedido = p.id;
+
+
