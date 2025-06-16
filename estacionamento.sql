@@ -64,28 +64,52 @@ INSERT INTO estaciona (cod, patio_num, veiculo_placa, dtEntrada, dtsaida, hsEntr
 (2, 2, 'DEF5678', '2025-06-07', '2025-06-08', '09:30:00', '10:15:00'),
 (3, 1, 'GHI9012', '2025-06-09', NULL, '07:45:00', NULL);
 
---letra a--
-SELECT CLIENTE.nome, VEICULO.cor
-FROM VEICULO
-JOIN CLIENTE ON VEICULO.cliente_cpf = CLIENTE.cpf;
---letra b--
---letra c--
+--respota a--
 SELECT
-VEICULO.placa,
-VEICULO.cor
+     veiculo.placa,
+     c.nome
 FROM VEICULO
-JOIN estaciona ON estaciona.veiculo_placa = VEICULO.placa
+JOIN CLIENTE AS c on c.cpf = veiculo.cliente_cpf;
+
+--resposta b--
+SELECT
+    c.cpf,
+    c.nome,
+    V.placa
+FROM 
+    CLIENTE AS c
+JOIN VEICULO AS V ON c.cpf = V.cliente_cpf
 WHERE
-estaciona.COD;
---letra d--
-SELECT * from estaciona
-JOIN VEICULO ON estaciona.veiculo_placa = VEICULO.placa
+    V.placa = "ABC1234";
+
+--reposta c--
+SELECT
+    v.placa,
+    v.cor
+FROM VEICULO AS v
+JOIN estaciona AS e ON e.veiculo_placa = v.placa
 WHERE
-    estaciona.COD = 1;
---letra e--
-SELECT 
-VEICULO.placa,
-MODELO.desc_2
+    e.cod = 1;
+
+--resposta d--
+SELECT
+    v.placa,
+FROM veiculo as v 
+--resposta e--
+SELECT
+    v.placa
+    m.desc_2
+FROM VEICULO as v
+JOIN modelo AS m ON v.modelo_codMod = m.codmod;
+
+--reposta f--
+
+SELECT
+    p.ender,
+    e.dtEntrada,
+    e.dtsaida
 FROM
-VEICULO
-JOIN modelo ON VEICULO.modelo_codMod = MODELO.codmod;
+    estaciona AS e
+JOIN PATIO as p on e.patio_num = p.num
+WHERE
+    e.veiculo_placa = "DEF5678";
