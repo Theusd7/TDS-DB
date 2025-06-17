@@ -113,3 +113,17 @@ FROM
 JOIN PATIO as p on e.patio_num = p.num
 WHERE
     e.veiculo_placa = "DEF5678";
+
+--reposta g--
+SELECT
+    COUNT(v.cor),
+    v.cor
+FROM veiculo as v
+group by
+    v.cor;
+
+SELECT 
+    COUNT(VEICULO.modelo_codMod),
+    VEICULO.modelo_codMod
+FROM veiculo
+JOIN modelo on veiculo.modelo_codMod = modelo.codmod;
